@@ -5,6 +5,8 @@ import java.awt.event.KeyListener;
 
 import main.GamePanel;
 
+import static utils.Constants.PlayerConstants.*;
+
 public class KeyboardInputs implements KeyListener{
 
     private GamePanel gamePanel;
@@ -23,7 +25,23 @@ public class KeyboardInputs implements KeyListener{
         switch(e.getKeyCode())
         {
             case KeyEvent.VK_SPACE:
-                System.out.println("Caindo");
+                //System.out.println("Caindo");
+            break;
+
+            case KeyEvent.VK_W:
+                gamePanel.yDir(0);
+            break;
+
+            case KeyEvent.VK_S:
+                gamePanel.yDir(0);
+            break;
+
+            case KeyEvent.VK_D:
+                gamePanel.xDir(0);
+            break;
+
+            case KeyEvent.VK_A:
+                gamePanel.xDir(0);
             break;
         }
     }
@@ -33,28 +51,23 @@ public class KeyboardInputs implements KeyListener{
         switch(e.getKeyCode())
         {
             case KeyEvent.VK_SPACE:
-                gamePanel.changeY(-5);
-                System.out.println("Voando");
+                gamePanel.setAnimation(DEAD);
             break;
 
             case KeyEvent.VK_W:
-                gamePanel.changeY(-5);
-                System.out.println("W");
+                gamePanel.yDir(-5);
             break;
 
             case KeyEvent.VK_S:
-                gamePanel.changeY(5);
-                System.out.println("S");
+                gamePanel.yDir(5);
             break;
 
             case KeyEvent.VK_D:
-                gamePanel.changeX(5);
-                System.out.println("D");
+                gamePanel.xDir(5);
             break;
 
             case KeyEvent.VK_A:
-                gamePanel.changeX(-5);
-                System.out.println("A");
+                gamePanel.xDir(-5);
             break;
         }
     }
