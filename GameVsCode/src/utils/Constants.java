@@ -5,6 +5,7 @@ public class Constants {
         public static final int NOT_MOVING = -1;
         public static final int LEFT = 0;
         public static final int RIGHT = 1;
+        public static final int SPACE = 2;
     }
 
     public static class PlayerConstants{
@@ -30,5 +31,10 @@ public class Constants {
                     return 2;
             }
         }
+    }
+
+    public static class SETS{
+        public static final int UPS_SET = 120;
+        public static final int FPS_SET = 120;
     }
 }

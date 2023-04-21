@@ -17,7 +17,12 @@ public class KeyboardInputs implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        switch(e.getKeyCode())
+        {
+            case KeyEvent.VK_SPACE:
+                //gamePanel.getGame().getPlayer().isFlying = true;
+            break;
+        }
     }
 
     @Override
@@ -25,23 +30,7 @@ public class KeyboardInputs implements KeyListener{
         switch(e.getKeyCode())
         {
             case KeyEvent.VK_SPACE:
-                //System.out.println("Caindo");
-            break;
-
-            case KeyEvent.VK_W:
-                gamePanel.yDir(0);
-            break;
-
-            case KeyEvent.VK_S:
-                gamePanel.yDir(0);
-            break;
-
-            case KeyEvent.VK_D:
-                gamePanel.xDir(0);
-            break;
-
-            case KeyEvent.VK_A:
-                gamePanel.xDir(0);
+                gamePanel.getGame().getPlayer().isFlying = false;
             break;
         }
     }
@@ -51,23 +40,11 @@ public class KeyboardInputs implements KeyListener{
         switch(e.getKeyCode())
         {
             case KeyEvent.VK_SPACE:
-                gamePanel.setAnimation(DEAD);
+                gamePanel.getGame().getPlayer().isFlying = true;
             break;
 
             case KeyEvent.VK_W:
-                gamePanel.yDir(-5);
-            break;
-
-            case KeyEvent.VK_S:
-                gamePanel.yDir(5);
-            break;
-
-            case KeyEvent.VK_D:
-                gamePanel.xDir(5);
-            break;
-
-            case KeyEvent.VK_A:
-                gamePanel.xDir(-5);
+                gamePanel.getGame().getPlayer().playerState = DEAD;
             break;
         }
     }
