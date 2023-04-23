@@ -10,6 +10,7 @@ import entities.*;
 import levels.LevelManager;
 
 import static utils.Constants.SETS.*;
+import static utils.Constants.PlayerConstants.*;
 
 public class Game implements Runnable{
 	private GameWindow gameWindow;
@@ -35,8 +36,8 @@ public class Game implements Runnable{
 	}
 
 	private void initClasses(){
-		player = new Player(175, 250, 192, 125);
-		asteroids = new Asteroid[3];
+		player = new Player(175, 250, 192, 126);
+		asteroids = new Asteroid[2];
 		for(int i = 0; i < asteroids.length; i++)
 		{
 			asteroids[i] = new Asteroid(1500, 300 / (i + 1), 192, 192);
@@ -50,11 +51,26 @@ public class Game implements Runnable{
 
 	public void update(){
 		player.update();
-		for(int i = 0; i < asteroids.length; i++)
+		//player.playerGotOutFromWindow();
+		
+		if(player.playerState == ALIVE)
 		{
-			asteroids[i].update();
-			int[] pos = asteroids[i].getPos();
-			player.detectCollision(pos[0], pos[1]);
+			for(int i = 0; i < asteroids.length; i++)
+			{
+				asteroids[i].update();
+				int[] pos = asteroids[i].getPos();
+				player.detectCollision(pos[0], pos[1]);
+			}
+		}
+		else
+		{
+			if(player.deadAnim == 1)
+			{
+				for(int i = 0; i < asteroids.length; i++)
+				{
+					asteroids[i].resetPos();
+				}
+			}
 		}
 	}
 

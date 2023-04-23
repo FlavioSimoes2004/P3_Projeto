@@ -28,7 +28,7 @@ public class Player extends Entity{
     private final float addFallSpeed = 2.25f;
     private float fallSpeed;
 
-    private int deadAnim = 0;
+    public int deadAnim = 0;
 
     public boolean isFlying;
 
@@ -135,7 +135,67 @@ public class Player extends Entity{
     }
 
     public void detectCollision(int asteX, int asteY){
-        if(y < 0)
+        if(collX(asteX) == true)
+        {
+            if(collY(asteY) == true)
+            {
+                Died();
+            }
+        }
+    }
+
+    public boolean collX(int asteX){
+        if(x == asteX)
+        {
+            return true;
+        }
+        else if(x > asteX)
+        {
+            if(x - asteX < 192)
+            {
+                return true;
+            }
+        }
+        else
+        {
+            if(asteX - x < -192)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean collY(int asteY){
+        if(y == asteY)
+        {
+            return true;
+        }
+        else if(y < asteY)
+        {
+            int minPosY = (int) y - 63;
+            int asteYup = asteY - 96;
+            if(minPosY >= asteYup && minPosY <= asteY)
+            {
+                return true;
+            }
+        }
+        else
+        {
+            int minPosY = (int) y + 63;
+            int asteYdown = asteY + 96;
+            if(minPosY >= asteY && minPosY <= asteYdown)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void playerGotOutFromWindow(){
+        if(y <= 192 || y >= 192)
         {
             Died();
         }
