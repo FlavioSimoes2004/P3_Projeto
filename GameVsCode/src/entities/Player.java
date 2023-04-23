@@ -57,6 +57,7 @@ public class Player extends Entity{
         }
 
         updateAnimationTick();
+        //System.out.println(y);
     }
 
     public void render(Graphics g){
@@ -195,8 +196,9 @@ public class Player extends Entity{
     }
 
     public void playerGotOutFromWindow(){
-        if(y <= 192 || y >= 192)
+        if(y <= -192 || y >= 1200)
         {
+            y = 175;
             Died();
         }
     }

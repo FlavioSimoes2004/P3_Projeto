@@ -51,7 +51,7 @@ public class Game implements Runnable{
 
 	public void update(){
 		player.update();
-		//player.playerGotOutFromWindow();
+		player.playerGotOutFromWindow();
 		
 		if(player.playerState == ALIVE)
 		{
