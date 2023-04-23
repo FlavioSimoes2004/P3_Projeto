@@ -5,3 +5,8 @@ fica rodando o codigo direito.
 2- ir no vscode e ir em abrir pasta;
 3- selecione a pasta GameVsCode aonde vc colocou;
 4- rode o codigo e selecione a classe Main como a main principal;
+
+JOGO TUTORIAL
+para fazer a nave voar segure o espaco, solte o espaco para a nave descer.
+
+se encostar no asteroide ou a nave sair da janela, vc perde.
