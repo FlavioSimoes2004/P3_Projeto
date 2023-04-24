@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import Inputs.KeyboardInputs;
-import Inputs.MouseInputs;
 
 import static utils.Constants.PlayerConstants.*;
 import static utils.Constants.Directions.*;
@@ -19,19 +18,15 @@ import static utils.Constants.Directions.*;
 //JPanel e como um painel de uma pintura, onde la se desenha tudo
 public class GamePanel extends JPanel{
 
-	private MouseInputs mouseInputs;
-
 	private Game game;
 
 	//e no JPanel que se coloca os inputs
 	public GamePanel(Game game) {
-		mouseInputs = new MouseInputs();
 		this.game = game;
 
 		setPanelSize();
 
 		addKeyListener(new KeyboardInputs(this));
-		addMouseListener(mouseInputs);
 	}
 
 	private void setPanelSize(){
