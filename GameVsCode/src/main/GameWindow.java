@@ -31,17 +31,5 @@ public class GameWindow {
 		
 		//Por padrao, o setVisible padrao e false, colocar ele no final
 		jframe.setVisible(true);
-
-		jframe.addWindowFocusListener(new WindowFocusListener() {
-			@Override
-			public void windowLostFocus(WindowEvent e){
-				gamePanel.getGame().windowLostFocus();
-			}
-
-			@Override
-			public void windowGainedFocus(WindowEvent e){
-				gamePanel.getGame().windowGainedFocus();
-			}
-		});
 	}
 }

@@ -145,7 +145,7 @@ public class Player extends Entity{
         }
     }
 
-    public boolean collX(int asteX){
+    private boolean collX(int asteX){
         if(x == asteX)
         {
             return true;
@@ -168,12 +168,12 @@ public class Player extends Entity{
         return false;
     }
 
-    public boolean collY(int asteY){
+    private boolean collY(int asteY){
         if(y == asteY)
         {
             return true;
         }
-        else if(y < asteY)
+        else if(y > asteY)
         {
             int minPosY = (int) y - 63;
             int asteYup = asteY - 96;

@@ -7,7 +7,6 @@ import java.util.Currency;
 import javax.xml.transform.stax.StAXResult;
 
 import entities.*;
-import levels.LevelManager;
 
 import static utils.Constants.SETS.*;
 import static utils.Constants.PlayerConstants.*;
@@ -75,7 +74,6 @@ public class Game implements Runnable{
 	}
 
 	public void render(Graphics g){
-		LevelManager.render(g);
 		for(int i = 0; i < asteroids.length; i++)
 		{
 			asteroids[i].render(g);
@@ -131,18 +129,5 @@ public class Game implements Runnable{
 
 	public Player getPlayer(){
 		return player;
-	}
-
-
-
-
-
-
-	public void windowLostFocus(){
-
-	}
-
-	public void windowGainedFocus(){
-
 	}
 }

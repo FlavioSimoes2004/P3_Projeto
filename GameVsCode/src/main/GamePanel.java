@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -39,6 +40,9 @@ public class GamePanel extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, 2000, 2000);
+		g.setColor(null);
 		game.render(g);
 	}
 
