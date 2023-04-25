@@ -136,16 +136,22 @@ public class Player extends Entity{
     }
 
     public void detectCollision(int asteX, int asteY){
-        if(collX(asteX) == true)
+        /*if(collX(asteX) == true)
         {
             if(collY(asteY) == true)
             {
                 Died();
             }
+        }*/
+
+        int distance = getDistance(asteX, asteY);
+        if(distance < 159)
+        {
+            Died();
         }
     }
 
-    private boolean collX(int asteX){
+    /*private boolean collX(int asteX){
         if(x == asteX)
         {
             return true;
@@ -181,7 +187,7 @@ public class Player extends Entity{
             {
                 return true;
             }
-        }
+        } 
         else
         {
             int minPosY = (int) y + 63;
@@ -193,7 +199,7 @@ public class Player extends Entity{
         }
 
         return false;
-    }
+    }*/
 
     public void playerGotOutFromWindow(){
         if(y <= -192 || y >= 1200)
@@ -201,5 +207,13 @@ public class Player extends Entity{
             y = 175;
             Died();
         }
+    }
+
+    public int getDistance(int asteX, int asteY){
+        int result = (int) Math.pow(asteX - x, 2) + (int) Math.pow(asteY - y, 2);
+        result = (int) Math.sqrt(result);
+        result = Math.abs(result);
+
+        return result;
     }
 }
