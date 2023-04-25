@@ -52,7 +52,7 @@ public class Game implements Runnable{
 		player.update();
 		player.playerGotOutFromWindow();
 		
-		if(player.playerState == ALIVE)
+		if(player.playerState != DEAD)
 		{
 			for(int i = 0; i < asteroids.length; i++)
 			{

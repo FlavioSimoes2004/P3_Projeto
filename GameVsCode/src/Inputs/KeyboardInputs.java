@@ -3,6 +3,7 @@ package Inputs;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import entities.Player;
 import main.GamePanel;
 
 import static utils.Constants.PlayerConstants.*;
@@ -10,17 +11,19 @@ import static utils.Constants.PlayerConstants.*;
 public class KeyboardInputs implements KeyListener{
 
     private GamePanel gamePanel;
+    private Player player;
 
     public KeyboardInputs(GamePanel gamePanel){
         this.gamePanel = gamePanel;
+        player = gamePanel.getGame().getPlayer();
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
         switch(e.getKeyCode())
         {
-            case KeyEvent.VK_SPACE:
-                //gamePanel.getGame().getPlayer().isFlying = true;
+            case KeyEvent.VK_W:
+                player.playerState = EGG;
             break;
         }
     }
@@ -40,11 +43,11 @@ public class KeyboardInputs implements KeyListener{
         switch(e.getKeyCode())
         {
             case KeyEvent.VK_SPACE:
-                gamePanel.getGame().getPlayer().isFlying = true;
+                player.isFlying = true;
             break;
 
             case KeyEvent.VK_W:
-                gamePanel.getGame().getPlayer().playerState = DEAD;
+                player.playerState = EGG;
             break;
         }
     }

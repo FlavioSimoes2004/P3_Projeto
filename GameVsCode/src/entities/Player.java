@@ -42,7 +42,7 @@ public class Player extends Entity{
     }
 
     public void update(){
-        if(playerState == ALIVE)
+        if(playerState != DEAD)
         {
             updatePos();
             updateHitbox();
@@ -68,9 +68,10 @@ public class Player extends Entity{
     public void loadAnimation(){
         sheet = LoadSave.getSpriteAtlas(LoadSave.PLAYER);
 
-        animation = new BufferedImage[2][3];
+        animation = new BufferedImage[3][3];
         animation[0] = new BufferedImage[3];
         animation[1] = new BufferedImage[3];
+        animation[2] = new BufferedImage[3];
 
         for(int linha = 0; linha < animation.length; linha++)
         {
