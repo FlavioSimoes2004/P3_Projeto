@@ -39,7 +39,7 @@ public class Asteroid extends Entity{
 
     public void render(Graphics g){
         g.drawImage(animation[0][animIndex], (int) x, (int) y, (int) (size / divisorSize), (int) (size / divisorSize), null);
-        drawHitbox(g);
+        //drawHitbox(g);
     }
 
     public void loadAnimation(){

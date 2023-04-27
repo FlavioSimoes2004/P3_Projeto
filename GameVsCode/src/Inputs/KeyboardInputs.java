@@ -22,8 +22,8 @@ public class KeyboardInputs implements KeyListener{
     public void keyTyped(KeyEvent e) {
         switch(e.getKeyCode())
         {
-            case KeyEvent.VK_W:
-                player.playerState = EGG;
+            case KeyEvent.VK_E:
+                
             break;
         }
     }
@@ -46,8 +46,11 @@ public class KeyboardInputs implements KeyListener{
                 player.isFlying = true;
             break;
 
-            case KeyEvent.VK_W:
-                player.playerState = EGG;
+            case KeyEvent.VK_E:
+                if(player.playerState != DEAD)
+                {
+                    player.playerState = EGG;
+                }
             break;
         }
     }

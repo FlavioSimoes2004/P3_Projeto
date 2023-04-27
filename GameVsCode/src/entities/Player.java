@@ -67,7 +67,7 @@ public class Player extends Entity{
 
     public void render(Graphics g){
         g.drawImage(animation[playerState][animIndex], (int) x, (int) y, 192, 192, null);
-        drawHitbox(g);
+        //drawHitbox(g);
     }
 
     public void loadAnimation(){
