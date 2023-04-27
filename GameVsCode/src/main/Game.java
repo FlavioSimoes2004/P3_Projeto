@@ -11,6 +11,9 @@ import entities.*;
 import static utils.Constants.SETS.*;
 import static utils.Constants.PlayerConstants.*;
 
+import Score.Score;
+import Score.*;
+
 public class Game implements Runnable{
 	private GameWindow gameWindow;
 	private GamePanel gamePanel;
@@ -18,6 +21,7 @@ public class Game implements Runnable{
 
 	private Player player;
 	private Asteroid[] asteroids;
+	public Score score;
 	
 	public Game() {
 		initClasses();
@@ -35,12 +39,13 @@ public class Game implements Runnable{
 	}
 
 	private void initClasses(){
-		player = new Player(175, 250, 192, 126);
+		player = new Player(this, 175, 250, 192, 126);
 		asteroids = new Asteroid[2];
 		for(int i = 0; i < asteroids.length; i++)
 		{
-			asteroids[i] = new Asteroid(1500, 300 / (i + 1), 192, 192);
+			asteroids[i] = new Asteroid(this, 1500, 300 / (i + 1), 192, 192);
 		}
+		score = new Score();
 	}
 
 	public void startGameLoop(){
@@ -79,6 +84,7 @@ public class Game implements Runnable{
 			asteroids[i].render(g);
 		}
 		player.render(g);
+		score.render(g);
 	}
 
 	@Override

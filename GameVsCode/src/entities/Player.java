@@ -13,6 +13,8 @@ import utils.LoadSave;
 import static utils.Constants.PlayerConstants.*;
 import static utils.Constants.SETS.*;
 
+import main.Game;
+
 public class Player extends Entity{
     public final float playerSpeed = 4;
 
@@ -30,10 +32,13 @@ public class Player extends Entity{
 
     public int deadAnim = 0;
 
+    private Game game;
+
     public boolean isFlying;
 
-    public Player(float x, float y, int width, int height){
+    public Player(Game game, float x, float y, int width, int height){
         super(x, y, width, height);
+        this.game = game;
         startYpos = y;
         isFlying = false;
         canFly = true;
@@ -127,6 +132,7 @@ public class Player extends Entity{
     public void Died(){
         playerState = DEAD;
         canFly = false;
+        game.score.reset();
     }
 
     public void reset(){

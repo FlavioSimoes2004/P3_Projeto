@@ -11,6 +11,8 @@ import javax.imageio.ImageIO;
 
 import utils.LoadSave;
 
+import main.Game;
+
 public class Asteroid extends Entity{
     private final int size = 192;
     private final float divisorSize = 1.25f;
@@ -18,11 +20,13 @@ public class Asteroid extends Entity{
     private int animTick = 0, animIndex = 0;
     private int animSpeed = 30;
     private Random random;
+    private Game game;
 
     private float speed = 5f;
 
-    public Asteroid(float x, float y, int width, int height){
+    public Asteroid(Game game, float x, float y, int width, int height){
         super(x, y, width, height);
+        this.game = game;
         loadAnimation();
         random = new Random();
     }
@@ -76,6 +80,7 @@ public class Asteroid extends Entity{
         x -= speed;
         if(x <= 0)
         {
+            game.score.increase();
             resetPos();
         }
     }
