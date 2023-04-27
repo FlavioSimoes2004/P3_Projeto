@@ -15,6 +15,8 @@ import static utils.Constants.SETS.*;
 
 import main.Game;
 
+import audio.AudioPlayer;
+
 public class Player extends Entity{
     public final float playerSpeed = 4;
 
@@ -33,12 +35,14 @@ public class Player extends Entity{
     public int deadAnim = 0;
 
     private Game game;
+    private AudioPlayer audio;
 
     public boolean isFlying;
 
     public Player(Game game, float x, float y, int width, int height){
         super(x, y, width, height);
         this.game = game;
+        audio = new AudioPlayer();
         startYpos = y;
         isFlying = false;
         canFly = true;
@@ -58,6 +62,7 @@ public class Player extends Entity{
             if(deadAnim >= 360)
             {
                 reset();
+                audio.stopAudio("explosion");
             }
         }
 
@@ -133,6 +138,7 @@ public class Player extends Entity{
         playerState = DEAD;
         canFly = false;
         game.score.reset();
+        audio.playAudio("explosion");
     }
 
     public void reset(){
