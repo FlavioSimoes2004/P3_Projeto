@@ -8,12 +8,12 @@ import main.GamePanel;
 
 import static utils.Constants.PlayerConstants.*;
 
-public class KeyboardInputs implements KeyListener{
+public class KeyboardInputsGame implements KeyListener{
 
     private GamePanel gamePanel;
     private Player player;
 
-    public KeyboardInputs(GamePanel gamePanel){
+    public KeyboardInputsGame(GamePanel gamePanel){
         this.gamePanel = gamePanel;
         player = gamePanel.getGame().getPlayer();
     }
@@ -33,7 +33,7 @@ public class KeyboardInputs implements KeyListener{
         switch(e.getKeyCode())
         {
             case KeyEvent.VK_SPACE:
-                gamePanel.getGame().getPlayer().isFlying = false;
+                player.isFlying = false;
             break;
         }
     }
@@ -52,7 +52,10 @@ public class KeyboardInputs implements KeyListener{
                     player.playerState = EGG;
                 }
             break;
+
+            case KeyEvent.VK_ESCAPE:
+
+            break;
         }
     }
-    
 }

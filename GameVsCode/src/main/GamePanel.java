@@ -2,24 +2,21 @@ package main;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import Inputs.KeyboardInputs;
-
-import static utils.Constants.PlayerConstants.*;
-import static utils.Constants.Directions.*;
+import Inputs.KeyboardInputsGame;
+import Inputs.KeyboardInputsJFrame;
 
 //JPanel pode ser uma variavel de classe como feito no GameWindow
 //JPanel e como um painel de uma pintura, onde la se desenha tudo
 public class GamePanel extends JPanel{
 
 	private Game game;
+	private int width, height;
 
 	//e no JPanel que se coloca os inputs
 	public GamePanel(Game game) {
@@ -27,7 +24,14 @@ public class GamePanel extends JPanel{
 
 		setPanelSize();
 
-		addKeyListener(new KeyboardInputs(this));
+		addKeyListener(new KeyboardInputsGame(this));
+	}
+
+	public void addInputsWindow(){
+		JFrame jframe = game.getWindow().getFrame();
+		width = jframe.getWidth();
+		height = jframe.getHeight();
+		addKeyListener(new KeyboardInputsJFrame(jframe));
 	}
 
 	private void setPanelSize(){
@@ -41,7 +45,7 @@ public class GamePanel extends JPanel{
 		super.paintComponent(g);
 
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, 2000, 2000);
+		g.fillRect(0, 0, width * 2, height * 2);
 		g.setColor(null);
 		game.render(g);
 	}

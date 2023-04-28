@@ -1,10 +1,6 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Currency;
-
-import javax.xml.transform.stax.StAXResult;
 
 import entities.*;
 
@@ -12,7 +8,6 @@ import static utils.Constants.SETS.*;
 import static utils.Constants.PlayerConstants.*;
 
 import Score.Score;
-import Score.*;
 
 public class Game implements Runnable{
 	private GameWindow gameWindow;
@@ -28,11 +23,11 @@ public class Game implements Runnable{
 		
 		//Primeiro cria a pintura para depois colocar a moldura
 		gamePanel = new GamePanel(this);
-		gameWindow = new GameWindow(gamePanel);
-		
+		gameWindow = new GameWindow(gamePanel);		
 
 		//para o programa identificar o que fazer com o input ele precisa de um requestFocus, se n
 		//ele nao sabe o que fazer com o input
+		gamePanel.addInputsWindow();
 		gamePanel.requestFocus();
 		
 		startGameLoop();
@@ -93,9 +88,6 @@ public class Game implements Runnable{
 		double timePerUpdate = 1000000000.0 / (UPS_SET);
 
 		long previousTime = System.nanoTime();
-
-		int frames = 0;
-		int updates = 0;
 		long lastCheck = System.currentTimeMillis();
 
 		double deltaU = 0;
@@ -112,28 +104,27 @@ public class Game implements Runnable{
 			if(deltaU >= 1)
 			{
 				update();
-				updates++;
 				deltaU--;
 			}
 
 			if(deltaF >= 1)
 			{
 				gamePanel.repaint();
-				frames++;
 				deltaF--;
 			}
 
 			if(System.currentTimeMillis() - lastCheck >= 1000)
 			{
 				lastCheck = System.currentTimeMillis();
-				//System.out.println("FPS: " + frames + "| UPS: " + updates);
-				frames = 0;
-				updates = 0;
 			}
 		}
 	}
 
 	public Player getPlayer(){
 		return player;
+	}
+
+	public GameWindow getWindow(){
+		return gameWindow;
 	}
 }

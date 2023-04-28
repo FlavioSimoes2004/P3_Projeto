@@ -1,15 +1,12 @@
 package entities;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Random;
 
-import javax.imageio.ImageIO;
-
-import utils.LoadSave;
+import utils.GetSprites;
 
 import main.Game;
 
@@ -39,11 +36,12 @@ public class Asteroid extends Entity{
 
     public void render(Graphics g){
         g.drawImage(animation[0][animIndex], (int) x, (int) y, (int) (size / divisorSize), (int) (size / divisorSize), null);
-        //drawHitbox(g);
+        //g.setColor(Color.WHITE);
+        //g.drawOval((int) x + 15, (int) y + 15, 192 / 2, 192 / 2);
     }
 
     public void loadAnimation(){
-        sheet = LoadSave.getSpriteAtlas(LoadSave.ASTEROID);
+        sheet = GetSprites.getSpriteAtlas(GetSprites.ASTEROID);
 
         animation = new BufferedImage[1][3];
         animation[0] = new BufferedImage[3];

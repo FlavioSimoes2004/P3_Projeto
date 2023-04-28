@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class LoadSave {
+public class GetSprites {
     public static final String PLAYER = "GameVsCode/res/player_sprites.png";
     public static final String ASTEROID = "GameVsCode/res/asteroid_sprite.png";
 

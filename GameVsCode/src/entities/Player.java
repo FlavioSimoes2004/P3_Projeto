@@ -2,16 +2,9 @@ package entities;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
-import main.GamePanel;
-import utils.LoadSave;
+import utils.GetSprites;
 
 import static utils.Constants.PlayerConstants.*;
-import static utils.Constants.SETS.*;
 
 import main.Game;
 
@@ -76,7 +69,7 @@ public class Player extends Entity{
     }
 
     public void loadAnimation(){
-        sheet = LoadSave.getSpriteAtlas(LoadSave.PLAYER);
+        sheet = GetSprites.getSpriteAtlas(GetSprites.PLAYER);
 
         animation = new BufferedImage[3][3];
         animation[0] = new BufferedImage[3];

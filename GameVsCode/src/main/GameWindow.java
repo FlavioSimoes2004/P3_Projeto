@@ -1,8 +1,5 @@
 package main;
-
-import java.awt.Dimension;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
+import java.awt.Frame;
 
 import javax.swing.JFrame;
 
@@ -22,8 +19,8 @@ public class GameWindow {
 		//Colocando a pintura dentro da moldura
 		jframe.add(gamePanel);
 		//para a janela aparecer no meio da tela
-		jframe.setLocationRelativeTo(null);
-
+		jframe.setLocation(0, 0);
+		jframe.setExtendedState(Frame.MAXIMIZED_BOTH);
 		jframe.setResizable(false);
 
 		//
@@ -31,5 +28,17 @@ public class GameWindow {
 		
 		//Por padrao, o setVisible padrao e false, colocar ele no final
 		jframe.setVisible(true);
+	}
+
+	public JFrame getFrame(){
+		return jframe;
+	}
+
+	public int getWidth(){
+		return Frame.WIDTH;
+	}
+
+	public int getHeight(){
+		return Frame.HEIGHT;
 	}
 }
