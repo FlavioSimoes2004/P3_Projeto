@@ -3,6 +3,8 @@ package com.example;
 import java.io.IOException;
 import java.util.Random;
 
+import com.Interface.Funcoes;
+
 import java.io.File;
 
 import javafx.application.Platform;
@@ -16,7 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
-public class PrincipalController implements Runnable{
+public class PrincipalController implements Runnable, Funcoes{
 
     @FXML
     private VBox Vbox;
