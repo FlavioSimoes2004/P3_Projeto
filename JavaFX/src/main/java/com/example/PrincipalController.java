@@ -3,6 +3,8 @@ package com.example;
 import java.io.IOException;
 import java.util.Random;
 
+import java.io.File;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,6 +51,8 @@ public class PrincipalController implements Runnable{
     private int tick;
 
     private Thread gameThread;
+
+    //private MediaPlayer explosion;
 
     //executado quando este controlador inicializa
     public void initialize(){
@@ -121,10 +125,6 @@ public class PrincipalController implements Runnable{
                     break;
                 }
             });
-
-            /*Platform.runLater(() -> {
-                scoreLabel.setText("Score: " + score);
-            });*/
         }
     }
 
@@ -256,13 +256,18 @@ public class PrincipalController implements Runnable{
 
     private int asteAnimTick;
 
+    public double getRandomNumber(int min, int max) {
+        return (Math.random() * (max - min)) + min;
+    }
+
     public void asteResetPos(ImageView asteroid){
-        asteroid.setLayoutX(900);
-        asteroid.setLayoutY(250);
+        asteroid.setLayoutX(getRandomNumber(875, 1000));
+        asteroid.setLayoutY(random.nextInt(500));
 
         if(plrAnimIndex != 1)
         {
             score++;
+            scoreLabel.setText("Score: " + score);
         }
     }
 
@@ -387,7 +392,6 @@ public class PrincipalController implements Runnable{
             {
                 Platform.runLater(() -> {
                     update();
-                    scoreLabel.setText("Score: " + score);
                     animation();
                 });
                 gameThread.sleep(5);

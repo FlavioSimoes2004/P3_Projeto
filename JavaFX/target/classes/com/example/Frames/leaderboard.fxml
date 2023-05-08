@@ -43,33 +43,34 @@
   <children>
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label id="Leaderboard" alignment="CENTER" layoutX="322.0" layoutY="92.0" prefHeight="16.0" prefWidth="187.0" text="Leaderboard" textAlignment="CENTER">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#28102c" height="552.0" stroke="BLACK" strokeType="INSIDE" width="852.0" />
+            <Label id="Leaderboard" alignment="CENTER" layoutX="322.0" layoutY="92.0" prefHeight="16.0" prefWidth="187.0" text="Leaderboard" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="234.0" layoutX="222.0" layoutY="128.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" width="385.0" />
+            <Label id="Leaderboard" fx:id="first" alignment="CENTER" layoutX="322.0" layoutY="138.0" prefHeight="16.0" prefWidth="187.0" text="First: value" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="234.0" layoutX="222.0" layoutY="128.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="2.0" width="385.0" />
-            <Label id="Leaderboard" fx:id="first" alignment="CENTER" layoutX="322.0" layoutY="138.0" prefHeight="16.0" prefWidth="187.0" text="First: value" textAlignment="CENTER">
+            <Label id="Leaderboard" fx:id="second" alignment="CENTER" layoutX="322.0" layoutY="180.0" prefHeight="16.0" prefWidth="187.0" text="Second: value" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label id="Leaderboard" fx:id="second" alignment="CENTER" layoutX="322.0" layoutY="180.0" prefHeight="16.0" prefWidth="187.0" text="Second: value" textAlignment="CENTER">
+            <Label id="Leaderboard" fx:id="third" alignment="CENTER" layoutX="322.0" layoutY="222.0" prefHeight="16.0" prefWidth="187.0" text="Third: value" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label id="Leaderboard" fx:id="third" alignment="CENTER" layoutX="322.0" layoutY="222.0" prefHeight="16.0" prefWidth="187.0" text="Third: value" textAlignment="CENTER">
+            <Label id="Leaderboard" fx:id="forth" alignment="CENTER" layoutX="322.0" layoutY="266.0" prefHeight="16.0" prefWidth="187.0" text="Forth: value" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label id="Leaderboard" fx:id="forth" alignment="CENTER" layoutX="322.0" layoutY="266.0" prefHeight="16.0" prefWidth="187.0" text="Forth: value" textAlignment="CENTER">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label id="Leaderboard" fx:id="fifth" alignment="CENTER" layoutX="322.0" layoutY="308.0" prefHeight="16.0" prefWidth="187.0" text="Fifth: value" textAlignment="CENTER">
+            <Label id="Leaderboard" fx:id="fifth" alignment="CENTER" layoutX="322.0" layoutY="308.0" prefHeight="16.0" prefWidth="187.0" text="Fifth: value" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
