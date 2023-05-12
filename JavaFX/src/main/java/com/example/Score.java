@@ -50,8 +50,11 @@ public class Score {
     }
 
     public static String getText(int pos){
+        if(topFiveScore[pos] == null)
+        {
+            return "";
+        }
         String txt = topFiveUsername[pos] + ": " + topFiveScore[pos];
-
         return txt;
     }
 }

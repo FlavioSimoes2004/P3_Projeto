@@ -46,7 +46,7 @@ public class PrincipalController implements Runnable, Funcoes{
 
     private static Scene scene;
     private int score;
-    private boolean isPlaying;
+    private static boolean isPlaying;
 
     private Random random;
 
@@ -109,7 +109,7 @@ public class PrincipalController implements Runnable, Funcoes{
                     break;
 
                     case E:
-                        if(plrAnimIndex != 1)
+                        if(isPlaying == true && plrAnimIndex != 1)
                         {
                             plrAnimIndex = 2;
                         }
