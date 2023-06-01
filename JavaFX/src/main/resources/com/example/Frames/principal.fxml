@@ -47,19 +47,29 @@
     <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="539.0" prefWidth="824.0" VBox.vgrow="ALWAYS">
          <children>
             <Rectangle id="Bar" arcHeight="5.0" arcWidth="5.0" fill="#28102c" height="539.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="824.0" />
+            <ImageView fx:id="fundo2" fitHeight="508.0" fitWidth="824.0" layoutX="824.0" layoutY="34.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../sprites/backg/background.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="fundo1" fitHeight="508.0" fitWidth="824.0" layoutY="34.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../sprites/backg/background.png" />
+               </image>
+            </ImageView>
             <ImageView fx:id="asteroid1" fitHeight="96.0" fitWidth="96.0" layoutX="900.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../sprites/asteroid/sprite_0.png" />
+                  <Image url="@../sprites/asteroid/asteroid.png" />
                </image>
             </ImageView>
             <ImageView fx:id="asteroid2" fitHeight="96.0" fitWidth="96.0" layoutX="835.0" layoutY="312.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../sprites/asteroid/sprite_0.png" />
+                  <Image url="@../sprites/asteroid/asteroid.png" />
                </image>
             </ImageView>
             <ImageView fx:id="player" fitHeight="96.0" fitWidth="96.0" layoutX="142.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../sprites/player/player_sprites0.png" />
+                  <Image url="@../sprites/player/0.png" />
                </image>
             </ImageView>
             <Rectangle id="Bar" arcHeight="5.0" arcWidth="5.0" fill="#e8e4e4" height="37.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="824.0" />

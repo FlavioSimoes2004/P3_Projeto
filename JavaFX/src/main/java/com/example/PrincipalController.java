@@ -3,7 +3,7 @@ package com.example;
 import java.io.IOException;
 import java.util.Random;
 
-import com.Interface.Funcoes;
+import com.Interface.*;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -16,7 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
-public class PrincipalController implements Runnable, Funcoes {
+public class PrincipalController implements Runnable, Update, Animation{
 
     @FXML
     private VBox Vbox;
@@ -26,6 +26,12 @@ public class PrincipalController implements Runnable, Funcoes {
 
     @FXML
     private ImageView asteroid2;
+
+    @FXML
+    private ImageView fundo1;
+
+    @FXML
+    private ImageView fundo2;
 
     @FXML
     private Button leadboard;
@@ -52,10 +58,8 @@ public class PrincipalController implements Runnable, Funcoes {
 
     private Thread gameThread;
 
-    // private MediaPlayer explosion;
-
-    // executado quando este controlador inicializa
-    public void initialize() {
+    //executado quando este controlador inicializa
+    public void initialize(){
         random = new Random();
 
         isPlaying = false;
@@ -66,10 +70,8 @@ public class PrincipalController implements Runnable, Funcoes {
         tick = 0;
 
         setPlayerAnim();
-        plrAnimTick = 0;
-        plrAnimIndex = 0;
-        canFly = true;
-        isFlying = false;
+        plrAnimTick = 0; plrAnimIndex = 0;
+        canFly = true; isFlying = false;
         deathTime = dieTime;
 
         setAsteroidAnim();
@@ -88,88 +90,105 @@ public class PrincipalController implements Runnable, Funcoes {
     }
 
     @FXML
-    void switchToLeaderboard(ActionEvent event) throws IOException {
+    void switchToLeaderboard(ActionEvent event) throws IOException{
         App.setRoot("leaderboard");
     }
 
-    public static void setScene(Scene actualScene) {
+    public static void setScene(Scene actualScene){
         scene = actualScene;
-        if (scene != null) {
-            scene.setOnKeyPressed(e -> {
-                switch (e.getCode()) {
+        if(scene != null)
+        {
+            scene.setOnKeyPressed(e -> 
+            {
+                switch(e.getCode())
+                {
                     case SPACE:
-                        if (canFly == true) {
+                        if(canFly == true)
+                        {
                             isFlying = true;
                             System.out.println(isFlying);
                         }
-                        break;
+                    break;
 
-                    case E:
-                        if (isPlaying == true && plrAnimIndex != 1) {
+                    /*case E:
+                        if(isPlaying == true && plrAnimIndex != 1)
+                        {
                             plrAnimIndex = 2;
                         }
-                        break;
+                    break;*/
                 }
             });
 
-            scene.setOnKeyReleased(e -> {
-                switch (e.getCode()) {
+            scene.setOnKeyReleased(e -> 
+            {
+                switch(e.getCode())
+                {
                     case SPACE:
                         isFlying = false;
                         System.out.println(isFlying);
-                        break;
+                    break;
                 }
             });
         }
     }
 
-    // PLAYER
+
+
+
+
+    //PLAYER
 
     private Image[][] animPlayer;
     private static boolean canFly;
     private static boolean isFlying;
     private final double flyingSpeed = 2.5;
-
+    
     private int plrAnimTick;
     private static int plrAnimIndex;
     private final int dieTime = 30;
     private int deathTime;
 
-    public void setPlayerAnim() {
-        animPlayer = new Image[3][3];
-        animPlayer[0] = new Image[3];
+    public void setPlayerAnim(){
+        animPlayer = new Image[2][3];
+        animPlayer[0] = new Image[6];
         animPlayer[1] = new Image[3];
-        animPlayer[2] = new Image[3];
 
         int cont = 0;
-        for (int i = 0; i < animPlayer.length; i++) {
-            for (int j = 0; j < animPlayer[i].length; j++) {
-                animPlayer[i][j] = new Image(
-                        getClass().getResourceAsStream("sprites/player/player_sprites" + cont + ".png"));
+        for(int i = 0; i < animPlayer.length; i++)
+        {
+            for(int j = 0; j < animPlayer[i].length; j++)
+            {
+                animPlayer[i][j] = new Image(getClass().getResourceAsStream("sprites/player/" + cont + ".png"));
                 cont++;
             }
         }
     }
 
-    public void loadPlayerAnim() {
-        player.setImage(animPlayer[plrAnimIndex][plrAnimTick]);
-        plrAnimTick++;
-        if (plrAnimTick >= animPlayer[plrAnimIndex].length) {
+    public void loadPlayerAnim(){
+        if(plrAnimTick + 1 > animPlayer[plrAnimIndex].length - 1)
+        {
             plrAnimTick = 0;
         }
+        else
+        {
+            plrAnimTick++;
+        }
+        player.setImage(animPlayer[plrAnimIndex][plrAnimTick]);
 
-        if (plrAnimIndex == 1) {
+        if(plrAnimIndex == 1)
+        {
             deathTime--;
             boolean condition = deathTime <= 0;
-            if (condition) {
+            if(condition)
+            {
                 isPlaying = false;
             }
         }
     }
 
-    public void resetPlayer() {
+    public void resetPlayer(){
         canFly = true;
-
+        
         plrAnimTick = 0;
         plrAnimIndex = 0;
         deathTime = dieTime;
@@ -180,20 +199,25 @@ public class PrincipalController implements Runnable, Funcoes {
 
     }
 
-    public void playerPos() {
-        if (canFly == true) {
-            if (isFlying) {
+    public void playerPos(){
+        if(canFly == true)
+        {
+            if(isFlying)
+            {
                 player.setLayoutY(player.getLayoutY() - flyingSpeed);
-            } else {
+            }
+            else
+            {
                 player.setLayoutY(player.getLayoutY() + flyingSpeed);
             }
         }
     }
-
-    public void Die() {
-        if (plrAnimIndex != 1) {
-            isFlying = false;
+    
+    public void Die(){
+        if(plrAnimIndex != 1)
+        {
             canFly = false;
+            isFlying = false;
             plrAnimIndex = 1;
             Score.compareNewScore(userText.getText(), score);
         }
@@ -203,29 +227,36 @@ public class PrincipalController implements Runnable, Funcoes {
         double x = player.getLayoutX();
         double y = player.getLayoutY();
 
-        double distanciaEntreVetores1 = Math.sqrt(Math.pow(((aste1.getLayoutX() + 40) - (x + 50)), 2)
-                + Math.pow((aste1.getLayoutY() + 40) - (y + 35), 2));
-        double distanciaEntreVetores2 = Math.sqrt(Math.pow(((aste2.getLayoutX() + 40) - (x + 50)), 2)
-                + Math.pow((aste2.getLayoutY() + 40) - (y + 35), 2));
-        if (distanciaEntreVetores1 <= (120 / 2) || distanciaEntreVetores2 <= (120 / 2)) {
+        double distanciaEntreVetores1 = Math.sqrt(Math.pow(((aste1.getLayoutX() + 40) - (x + 50)), 2) + Math.pow((aste1.getLayoutY() + 40) - (y + 35), 2));
+        double distanciaEntreVetores2 = Math.sqrt(Math.pow(((aste2.getLayoutX() + 40) - (x + 50)), 2) + Math.pow((aste2.getLayoutY() + 40) - (y + 35), 2));
+        if (distanciaEntreVetores1 <= (194 / 2) || distanciaEntreVetores2 <= (194 / 2))
+        {
             Die();
         }
     }
 
-    public void outWindow() {
+    public void outWindow(){
         double y = player.getLayoutY();
-        if (y <= -30 || y >= 530) {
+        if(y <= -30 || y >= 530)
+        {
             Die();
         }
     }
 
-    public void playerUpdate() {
+    public void playerUpdate(){
         playerPos();
         detectCollision(asteroid1, asteroid2);
         outWindow();
     }
 
-    // ASTEROIDS
+
+
+
+
+
+
+
+    //ASTEROIDS
     private final double asteSpeed = 3.0;
     private Image[] asteroidAnim;
 
@@ -235,41 +266,45 @@ public class PrincipalController implements Runnable, Funcoes {
         return (Math.random() * (max - min)) + min;
     }
 
-    public void asteResetPos(ImageView asteroid) {
+    public void asteResetPos(ImageView asteroid){
         asteroid.setLayoutX(getRandomNumber(875, 1000));
         asteroid.setLayoutY(random.nextInt(500));
 
-        if (plrAnimIndex != 1) {
+        if(plrAnimIndex != 1)
+        {
             score++;
             scoreLabel.setText("Score: " + score);
         }
     }
 
-    public void asteMove(ImageView asteroid) {
+    public void asteMove(ImageView asteroid){
         asteroid.setLayoutX(asteroid.getLayoutX() - asteSpeed);
-        if (asteroid.getLayoutX() <= -125.0) {
+        if(asteroid.getLayoutX() <= -125.0)
+        {
             asteResetPos(asteroid);
         }
     }
 
-    public void setAsteroidAnim() {
-        asteroidAnim = new Image[3];
+    public void setAsteroidAnim(){
+        asteroidAnim = new Image[1];
 
-        for (int i = 0; i < asteroidAnim.length; i++) {
-            asteroidAnim[i] = new Image(getClass().getResourceAsStream("sprites/asteroid/sprite_" + i + ".png"));
+        for(int i = 0; i < asteroidAnim.length; i++)
+        {
+            asteroidAnim[i] = new Image(getClass().getResourceAsStream("sprites/asteroid/asteroid" + ".png"));
         }
     }
 
-    public void loadAsteAnim() {
+    public void loadAsteAnim(){
         asteroid1.setImage(asteroidAnim[asteAnimTick]);
         asteroid2.setImage(asteroidAnim[asteAnimTick]);
         asteAnimTick++;
-        if (asteAnimTick >= asteroidAnim.length) {
+        if(asteAnimTick >= asteroidAnim.length)
+        {
             asteAnimTick = 0;
         }
     }
 
-    public void resetAsteroid() {
+    public void resetAsteroid(){
         asteAnimTick = 0;
         asteResetPos(asteroid1);
         asteResetPos(asteroid2);
@@ -277,19 +312,65 @@ public class PrincipalController implements Runnable, Funcoes {
         asteroid1.setImage(asteroidAnim[asteAnimTick]);
     }
 
-    public void asteroidUpdate() {
+    public void asteroidUpdate(){
         asteMove(asteroid1);
         asteMove(asteroid2);
     }
 
-    // THREAD
 
-    public void reset() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //BACKGROUND
+    public final double backgSpeed = 2f;
+
+    public void moveBackground(){
+        fundo1.setLayoutX(fundo1.getLayoutX() - backgSpeed);
+        changeX(fundo1);
+        fundo2.setLayoutX(fundo2.getLayoutX() - backgSpeed);
+        changeX(fundo2);
+    }
+
+    public void changeX(ImageView fundo){
+        if(fundo.getLayoutX() <= -824)
+        {
+            fundo.setLayoutX(824);
+        }
+    }
+
+    public void resetBackground(){
+        fundo1.setLayoutX(0);
+        fundo2.setLayoutX(824);
+    }
+
+
+
+
+
+
+
+
+
+
+    //THREAD
+
+    public void reset(){
         gameThread = new Thread(this);
         gameThread.setDaemon(true);
 
         resetPlayer();
         resetAsteroid();
+        resetBackground();
 
         tick = 0;
         score = 0;
@@ -299,67 +380,69 @@ public class PrincipalController implements Runnable, Funcoes {
         userText.setDisable(false);
         leadboard.setDisable(false);
     }
+    
+    public void update(){
+        playerUpdate();
+        asteroidUpdate();
+        moveBackground();
+    }
 
-    @Override
-    public void animation() {
+    public void animation(){
         tick++;
-        if (tick >= 30) {
+        if(tick >= 30)
+        {
             loadPlayerAnim();
-            loadAsteAnim();
+            //loadAsteAnim();
             tick = 0;
         }
     }
 
-    @Override
-    public void update() {
-        playerUpdate();
-        asteroidUpdate();
-    }
 
-    /*
-     * public void run() {
-     * double timePerUpdate = 1000000000.0 / (200); //UPS_SET
-     * 
-     * long previousTime = System.nanoTime();
-     * long lastCheck = System.currentTimeMillis();
-     * 
-     * double deltaU = 0;
-     * 
-     * while(isPlaying == true)
-     * {
-     * long currentTime = System.nanoTime();
-     * 
-     * deltaU += (currentTime - previousTime) / timePerUpdate;
-     * previousTime = currentTime;
-     * 
-     * if(deltaU >= 1)
-     * {
-     * update();
-     * animation();
-     * deltaU--;
-     * }
-     * 
-     * if(System.currentTimeMillis() - lastCheck >= 1000)
-     * {
-     * lastCheck = System.currentTimeMillis();
-     * }
-     * }
-     * 
-     * reset();
-     * gameThread.interrupt();
-     * }
-     */
+    /*public void run() {
+		double timePerUpdate = 1000000000.0 / (200); //UPS_SET
 
-    @Override
-    public void run() {
-        while (isPlaying == true) {
-            try {
+		long previousTime = System.nanoTime();
+		long lastCheck = System.currentTimeMillis();
+
+		double deltaU = 0;
+
+		while(isPlaying == true)
+		{
+			long currentTime = System.nanoTime();
+
+			deltaU += (currentTime - previousTime) / timePerUpdate;
+			previousTime = currentTime;
+
+			if(deltaU >= 1)
+			{
+				update();
+                animation();
+				deltaU--;
+			}
+
+			if(System.currentTimeMillis() - lastCheck >= 1000)
+			{
+				lastCheck = System.currentTimeMillis();
+			}
+		}
+
+        reset();
+        gameThread.interrupt();
+	}*/
+
+    public void run(){
+        while(isPlaying == true)
+        {
+            try
+            {
                 Platform.runLater(() -> {
                     update();
                     animation();
                 });
                 gameThread.sleep(5);
-            } catch (InterruptedException e) {
+            }
+            catch(InterruptedException e)
+            {
                 gameThread.currentThread().interrupt();
             }
         }
