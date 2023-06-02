@@ -145,13 +145,13 @@ public class PrincipalController implements Runnable, Update, Animation{
     
     private int plrAnimTick;
     private static int plrAnimIndex;
-    private final int dieTime = 30;
-    private int deathTime;
+    private final int dieTime = 20;
+    private int deathTime = dieTime;
 
     public void setPlayerAnim(){
         animPlayer = new Image[2][3];
         animPlayer[0] = new Image[6];
-        animPlayer[1] = new Image[3];
+        animPlayer[1] = new Image[4];
 
         int cont = 0;
         for(int i = 0; i < animPlayer.length; i++)
@@ -165,28 +165,46 @@ public class PrincipalController implements Runnable, Update, Animation{
     }
 
     public void loadPlayerAnim(){
-        if(plrAnimTick + 1 > animPlayer[plrAnimIndex].length - 1)
+        if(plrAnimIndex != 1)
         {
-            plrAnimTick = 0;
+            if(plrAnimTick + 1 > animPlayer[plrAnimIndex].length - 1)
+            {
+                plrAnimTick = 0;
+            }
+            else
+            {
+                plrAnimTick++;
+            }
         }
         else
         {
-            plrAnimTick++;
-        }
-        player.setImage(animPlayer[plrAnimIndex][plrAnimTick]);
-
-        if(plrAnimIndex == 1)
-        {
-            deathTime--;
-            boolean condition = deathTime <= 0;
-            if(condition)
+            if(plrAnimTick < animPlayer[plrAnimIndex].length - 1)
             {
-                isPlaying = false;
+                plrAnimTick++;
+            }
+            else
+            {
+                if(player.isVisible() == true)
+                {
+                    player.setVisible(false);
+                }
+                else
+                {
+                    player.setVisible(true);
+                }
+                deathTime--;
+                if(deathTime <= 0)
+                {
+                    isPlaying = false;
+                }
             }
         }
+
+        player.setImage(animPlayer[plrAnimIndex][plrAnimTick]);
     }
 
     public void resetPlayer(){
+        player.setVisible(true);
         canFly = true;
         
         plrAnimTick = 0;
@@ -219,7 +237,28 @@ public class PrincipalController implements Runnable, Update, Animation{
             canFly = false;
             isFlying = false;
             plrAnimIndex = 1;
-            Score.compareNewScore(userText.getText(), score);
+            plrAnimTick = 0;
+            String txt = userText.getText();
+            if(txt.length() > 8)
+            {
+                String subTxt = "";
+                for(int i = 0; i < 8; i++)
+                {
+                    if(i == 0)
+                    {
+                        subTxt = Character.toString(txt.charAt(0));
+                    }
+                    else
+                    {
+                        subTxt += Character.toString(txt.charAt(i));
+                    }
+                }
+                Score.compareNewScore(subTxt, score);
+            }
+            else
+            {
+                Score.compareNewScore(userText.getText(), score);
+            }
         }
     }
 
@@ -332,7 +371,7 @@ public class PrincipalController implements Runnable, Update, Animation{
 
 
     //BACKGROUND
-    public final double backgSpeed = 2f;
+    public final double backgSpeed = 1.5;
 
     public void moveBackground(){
         fundo1.setLayoutX(fundo1.getLayoutX() - backgSpeed);
@@ -342,7 +381,7 @@ public class PrincipalController implements Runnable, Update, Animation{
     }
 
     public void changeX(ImageView fundo){
-        if(fundo.getLayoutX() <= -824)
+        if(fundo.getLayoutX() <= -823)
         {
             fundo.setLayoutX(824);
         }
