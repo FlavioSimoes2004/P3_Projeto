@@ -10,7 +10,7 @@ import utils.GetSprites;
 
 import main.Game;
 
-public class Asteroid extends Entity{
+public class Asteroid extends Entity implements InterfaceEntity{
     private final int size = 192;
     private final float divisorSize = 1.25f;
 

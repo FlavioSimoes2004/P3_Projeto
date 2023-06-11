@@ -10,7 +10,7 @@ import main.Game;
 
 import audio.AudioPlayer;
 
-public class Player extends Entity{
+public class Player extends Entity implements InterfaceEntity{
     public final float playerSpeed = 4;
 
     private final int size = 192;
