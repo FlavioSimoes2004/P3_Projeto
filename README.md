@@ -1,12 +1,2 @@
-Para o jogo rodar, precisa abrir o vs code e escolher a pasta "P3_Projeto".
-NAO escolha a pasta GameVsCode
-
-JOGO TUTORIAL
-para fazer a nave voar segure o espaco, solte o espaco para a nave descer.
-
-se encostar no asteroide ou a nave sair da janela, vc perde.
-
-IMPORTANTE TAMBEM
-
-JavaSwing tem heranca
-JavaFX tem interface
+JavaSwing/src/main/Main.java          -------Para rodar o jogo 1
+JavaFX/src/java/com/example/App.java --------Para rodar o jogo 2
