@@ -17,7 +17,7 @@ public class AudioPlayer {
     }
 
     private Clip getClip(String name){
-        File file = new File("GameVsCode/res/" + name + ".wav");
+        File file = new File("JavaSwing/res/" + name + ".wav");
         AudioInputStream audio;
 
         try
