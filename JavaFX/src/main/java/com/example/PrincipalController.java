@@ -257,7 +257,7 @@ public class PrincipalController implements Runnable, Update, Animation{
             }
             else
             {
-                Score.compareNewScore(userText.getText(), score);
+                Score.compareNewScore(txt, score);
             }
         }
     }
